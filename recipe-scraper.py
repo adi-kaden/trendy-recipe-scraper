@@ -1,4 +1,5 @@
 import requests
+import matplotlib.pyplot as plt
 import pandas as pd
 from bs4 import BeautifulSoup
 
@@ -53,3 +54,16 @@ df = pd.DataFrame(scraped_recipes)
 
 # Save the DataFrame to a CSV file
 df.to_csv('scraped_recipes.csv', index=False)
+
+ingredient_counts = df['ingredients'].apply(len)
+
+# Plotting the number of ingredients for each recipe
+plt.figure(figsize=(10, 6))
+plt.bar(df['title'], ingredient_counts, color='skyblue')
+plt.xlabel('Recipe Title')
+plt.ylabel('Number of Ingredients')
+plt.title('Number of Ingredients per Recipe')
+plt.xticks(rotation=45, ha='right')
+plt.tight_layout()
+plt.savefig('ingredient_counts.png')
+plt.show()
