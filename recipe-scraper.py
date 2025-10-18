@@ -1,4 +1,5 @@
 import requests
+import pandas as pd
 from bs4 import BeautifulSoup
 
 # URL of the recipe page
@@ -40,6 +41,15 @@ def scrape_recipe(url):
         return f"An error occured: {e}"
 
 # Scrape each recipe and print the results
+scraped_recipes = []
 for url in urls:
     print(f"Scraping recipe from: {url}")
-    print(scrape_recipe(url))
+    recipe = scrape_recipe(url)
+    if recipe:
+        scraped_recipes.append(recipe)
+
+# Convert to DataFrame for better visualization
+df = pd.DataFrame(scraped_recipes)
+
+# Save the DataFrame to a CSV file
+df.to_csv('scraped_recipes.csv', index=False)
