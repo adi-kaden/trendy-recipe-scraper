@@ -1,0 +1,5 @@
+outs:
+- md5: dd2f606ac469c49b5946ea1a4d2eaacb
+  size: 1042
+  hash: md5
+  path: scraped_recipes.csv
